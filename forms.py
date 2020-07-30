@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask_wtf import Form
 from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField
-from wtforms.validators import DataRequired, AnyOf, URL, Regexp
+from wtforms.validators import DataRequired, AnyOf, URL, Regexp, ValidationError
 import re
 
 class ShowForm(Form):
@@ -123,7 +123,10 @@ class VenueForm(Form):
 class ArtistForm(Form):
 
     def validate_phone(form, field):
-        if not re.search(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}$", field.data):
+        print(re.search(r'\d\d\d[-]\d\d\d[-]\d\d\d\d', field.data))
+        if not re.search(r'\d\d\d[-]\d\d\d[-]\d\d\d\d', field.data):
+            print(field.data)
+        # if not re.search(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}$", field.data):
             raise ValidationError("Invalid phone number.")
 
     name = StringField(
