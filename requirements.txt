@@ -1,4 +1,4 @@
-Babel==2.8.0
+Babel==2.9.1
 Flask_WTF==0.14.3
 Flask_SQLAlchemy==2.4.0
 Flask==1.0.3
